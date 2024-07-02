@@ -1,7 +1,10 @@
 import logging
 import os
-from src.utils import read_transactions_exel, get_card_data, get_greeting, get_response_greeting, get_currency_rates, get_top_transactions, get_stock_price, data_transactions
-from main import date_time_obj, data_json, url_stocks, url_currency
+from src.utils import read_transactions_exel, get_card_data, get_response_greeting, get_currency_rates, get_top_transactions, get_stock_price, filter_data_range, json_path, get_greeting, data_transactions
+from src.external_api import url_stocks, url_currency
+from src.external_api import data_json
+from datetime import datetime
+
 import json
 
 log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
@@ -15,12 +18,12 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def main():
-    greeting = get_greeting(date_time_obj)
-    transactions = get_card_data(data_transactions)
-    top_transactions = get_top_transactions(data_transactions)
+def main(date):
+    greeting = get_response_greeting(date)
+    transactions = get_card_data(filter_data_range(data_transactions, date))
+    top_transactions = get_top_transactions(filter_data_range(data_transactions, date))
     course = get_currency_rates(url_currency, data_json)
-    stock_prices = get_stock_price(url_stocks, date_time_obj)
+    stock_prices = get_stock_price(url_stocks, data_json)
 
     response = {
         "greeting": greeting,
@@ -31,8 +34,4 @@ def main():
     }
 
     logger.info("Выводим результат")
-    return json.dumps(response, ensure_ascii=False)
-
-
-if __name__ == "__main__":
-    main()
+    return json.dumps(response, ensure_ascii=False, indent=4)

@@ -3,10 +3,10 @@ import os
 from datetime import datetime
 import math
 import requests
-from main import API_KEY_CURRENCY, API_KEY_STOCKS
-from typing import Union,Any
-
+from src.external_api import API_KEY_CURRENCY, API_KEY_STOCKS
+from typing import Union
 import pandas as pd
+
 
 log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
 os.makedirs(log_dir, exist_ok=True)
@@ -46,7 +46,20 @@ def read_transactions_exel(operations_list: str) -> list[dict]:
 
 
 json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/operations.xls"))
-data_transactions = json_path
+data_transactions = read_transactions_exel(json_path)
+
+
+def filter_data_range(input_data, date_string):
+    dt = datetime.strptime(date_string, "%d-%m-%Y %H:%M:%S")
+    first_day = dt.replace(day=1)
+
+    start_range = first_day
+    end_range = dt
+
+    filtered_data = [
+        item for item in input_data if start_range <= datetime.strptime(item["Date_operation"][:10], "%d.%m.%Y") <= end_range
+    ]
+    return filtered_data
 
 
 def get_greeting(time: datetime) -> str:
