@@ -1,5 +1,17 @@
 [
     {
+        "date_operation":"01.07.2021 15:52:06",
+        "transaction_amount":-73.0
+    },
+    {
+        "date_operation":"01.07.2021 22:38:47",
+        "transaction_amount":-146.39
+    },
+    {
+        "date_operation":"01.08.2021 22:55:33",
+        "transaction_amount":-236.79
+    },
+    {
         "date_operation":"01.09.2021 11:31:07",
         "transaction_amount":-88.45
     },
@@ -8,12 +20,20 @@
         "transaction_amount":-246.45
     },
     {
-        "date_operation":"01.10.2021 15:21:14",
-        "transaction_amount":-96.78
+        "date_operation":"02.07.2021 14:19:20",
+        "transaction_amount":-26.9
     },
     {
-        "date_operation":"01.11.2021 15:32:24",
-        "transaction_amount":-228.0
+        "date_operation":"02.07.2021 16:35:03",
+        "transaction_amount":-93.0
+    },
+    {
+        "date_operation":"02.07.2021 18:33:48",
+        "transaction_amount":-299.9
+    },
+    {
+        "date_operation":"02.08.2021 15:26:15",
+        "transaction_amount":-363.95
     },
     {
         "date_operation":"02.09.2021 09:16:40",
@@ -32,24 +52,16 @@
         "transaction_amount":-34.0
     },
     {
-        "date_operation":"02.11.2021 10:05:06",
-        "transaction_amount":-69.99
+        "date_operation":"03.07.2021 17:40:23",
+        "transaction_amount":-82.0
     },
     {
-        "date_operation":"02.11.2021 11:56:26",
-        "transaction_amount":-68.0
+        "date_operation":"03.07.2021 17:41:52",
+        "transaction_amount":-99.0
     },
     {
-        "date_operation":"02.11.2021 11:59:48",
-        "transaction_amount":-53.99
-    },
-    {
-        "date_operation":"02.11.2021 16:18:19",
-        "transaction_amount":-57.16
-    },
-    {
-        "date_operation":"02.11.2021 16:20:22",
-        "transaction_amount":-90.65
+        "date_operation":"03.08.2021 16:40:27",
+        "transaction_amount":-50.29
     },
     {
         "date_operation":"03.09.2021 13:38:40",
@@ -60,48 +72,20 @@
         "transaction_amount":-228.91
     },
     {
-        "date_operation":"03.10.2021 10:14:22",
-        "transaction_amount":-167.97
-    },
-    {
-        "date_operation":"03.10.2021 10:20:42",
-        "transaction_amount":-105.98
-    },
-    {
-        "date_operation":"03.10.2021 12:46:44",
-        "transaction_amount":-152.0
-    },
-    {
-        "date_operation":"03.11.2021 13:14:19",
-        "transaction_amount":-153.29
-    },
-    {
-        "date_operation":"03.11.2021 14:05:54",
-        "transaction_amount":-96.98
-    },
-    {
         "date_operation":"04.09.2021 13:31:13",
         "transaction_amount":-278.0
     },
     {
-        "date_operation":"04.10.2021 14:38:57",
-        "transaction_amount":-1195.77
+        "date_operation":"05.07.2021 19:27:19",
+        "transaction_amount":-92.0
     },
     {
-        "date_operation":"04.10.2021 16:35:42",
-        "transaction_amount":-108.56
+        "date_operation":"05.07.2021 19:39:33",
+        "transaction_amount":-115.98
     },
     {
-        "date_operation":"04.11.2021 13:08:33",
-        "transaction_amount":-224.0
-    },
-    {
-        "date_operation":"04.11.2021 17:00:29",
-        "transaction_amount":-395.92
-    },
-    {
-        "date_operation":"04.11.2021 21:17:30",
-        "transaction_amount":-241.93
+        "date_operation":"05.07.2021 20:40:32",
+        "transaction_amount":-591.8
     },
     {
         "date_operation":"05.09.2021 16:15:26",
@@ -116,36 +100,16 @@
         "transaction_amount":-305.96
     },
     {
-        "date_operation":"05.10.2021 15:27:42",
-        "transaction_amount":-220.95
+        "date_operation":"06.08.2021 15:19:17",
+        "transaction_amount":-450.94
     },
     {
-        "date_operation":"05.10.2021 20:35:52",
-        "transaction_amount":-163.97
+        "date_operation":"06.08.2021 15:33:40",
+        "transaction_amount":-23.17
     },
     {
-        "date_operation":"05.11.2021 14:17:51",
-        "transaction_amount":-143.82
-    },
-    {
-        "date_operation":"05.11.2021 14:33:34",
-        "transaction_amount":-205.23
-    },
-    {
-        "date_operation":"05.11.2021 14:44:12",
-        "transaction_amount":-569.94
-    },
-    {
-        "date_operation":"05.11.2021 14:48:56",
-        "transaction_amount":-372.0
-    },
-    {
-        "date_operation":"05.11.2021 14:55:51",
-        "transaction_amount":-103.8
-    },
-    {
-        "date_operation":"05.11.2021 21:53:15",
-        "transaction_amount":-114.9
+        "date_operation":"06.08.2021 15:39:02",
+        "transaction_amount":-88.0
     },
     {
         "date_operation":"06.09.2021 11:07:55",
@@ -156,16 +120,16 @@
         "transaction_amount":-150.67
     },
     {
-        "date_operation":"06.10.2021 16:32:03",
-        "transaction_amount":-94.82
+        "date_operation":"07.07.2021 06:13:28",
+        "transaction_amount":-157.0
     },
     {
-        "date_operation":"06.11.2021 12:48:10",
-        "transaction_amount":-119.8
+        "date_operation":"07.07.2021 10:45:47",
+        "transaction_amount":-465.1
     },
     {
-        "date_operation":"06.11.2021 21:10:32",
-        "transaction_amount":-119.8
+        "date_operation":"07.08.2021 15:01:45",
+        "transaction_amount":-259.99
     },
     {
         "date_operation":"07.09.2021 10:16:58",
@@ -176,64 +140,40 @@
         "transaction_amount":-237.6
     },
     {
-        "date_operation":"07.10.2021 12:34:16",
-        "transaction_amount":-196.33
+        "date_operation":"08.08.2021 16:59:11",
+        "transaction_amount":-368.8
     },
     {
-        "date_operation":"07.10.2021 17:14:54",
-        "transaction_amount":-111.78
-    },
-    {
-        "date_operation":"07.10.2021 17:53:24",
-        "transaction_amount":-7.99
-    },
-    {
-        "date_operation":"07.11.2021 09:35:29",
-        "transaction_amount":-39.9
-    },
-    {
-        "date_operation":"07.11.2021 18:50:25",
-        "transaction_amount":-304.59
+        "date_operation":"08.08.2021 17:04:04",
+        "transaction_amount":-42.48
     },
     {
         "date_operation":"08.09.2021 11:00:48",
         "transaction_amount":-146.0
     },
     {
-        "date_operation":"08.10.2021 09:47:54",
-        "transaction_amount":-133.97
+        "date_operation":"09.07.2021 15:13:16",
+        "transaction_amount":-207.99
     },
     {
-        "date_operation":"08.10.2021 15:24:46",
-        "transaction_amount":-59.47
-    },
-    {
-        "date_operation":"08.10.2021 18:38:30",
-        "transaction_amount":-34.0
-    },
-    {
-        "date_operation":"08.11.2021 15:07:40",
-        "transaction_amount":-876.97
-    },
-    {
-        "date_operation":"08.11.2021 17:07:38",
-        "transaction_amount":-100.36
-    },
-    {
-        "date_operation":"08.11.2021 21:05:19",
-        "transaction_amount":-105.89
+        "date_operation":"09.07.2021 23:42:35",
+        "transaction_amount":-57.0
     },
     {
         "date_operation":"09.09.2021 11:00:39",
         "transaction_amount":-90.16
     },
     {
-        "date_operation":"09.10.2021 10:42:23",
-        "transaction_amount":-185.98
+        "date_operation":"10.07.2021 09:10:43",
+        "transaction_amount":-93.0
     },
     {
-        "date_operation":"09.11.2021 11:59:20",
-        "transaction_amount":-184.7
+        "date_operation":"10.07.2021 19:57:58",
+        "transaction_amount":-208.91
+    },
+    {
+        "date_operation":"10.08.2021 11:31:53",
+        "transaction_amount":-157.0
     },
     {
         "date_operation":"10.09.2021 09:06:21",
@@ -256,16 +196,28 @@
         "transaction_amount":-219.98
     },
     {
-        "date_operation":"10.10.2021 12:59:42",
-        "transaction_amount":-231.96
+        "date_operation":"11.07.2021 10:33:19",
+        "transaction_amount":-113.38
     },
     {
-        "date_operation":"10.10.2021 22:11:50",
-        "transaction_amount":-111.98
+        "date_operation":"11.07.2021 14:42:10",
+        "transaction_amount":-231.66
     },
     {
-        "date_operation":"10.11.2021 22:04:41",
-        "transaction_amount":-89.8
+        "date_operation":"11.07.2021 16:41:08",
+        "transaction_amount":-57.0
+    },
+    {
+        "date_operation":"11.07.2021 18:45:44",
+        "transaction_amount":-199.0
+    },
+    {
+        "date_operation":"11.08.2021 15:55:50",
+        "transaction_amount":-39.99
+    },
+    {
+        "date_operation":"11.08.2021 18:24:05",
+        "transaction_amount":-124.49
     },
     {
         "date_operation":"11.09.2021 12:56:58",
@@ -280,24 +232,12 @@
         "transaction_amount":-222.0
     },
     {
-        "date_operation":"11.10.2021 10:50:18",
-        "transaction_amount":-568.75
+        "date_operation":"12.07.2021 19:46:23",
+        "transaction_amount":-80.0
     },
     {
-        "date_operation":"11.10.2021 16:50:19",
-        "transaction_amount":-136.76
-    },
-    {
-        "date_operation":"11.10.2021 20:27:24",
-        "transaction_amount":-182.87
-    },
-    {
-        "date_operation":"11.11.2021 15:25:03",
-        "transaction_amount":-99.32
-    },
-    {
-        "date_operation":"11.11.2021 21:09:32",
-        "transaction_amount":-162.67
+        "date_operation":"12.07.2021 22:56:26",
+        "transaction_amount":-57.99
     },
     {
         "date_operation":"12.09.2021 10:25:59",
@@ -312,20 +252,16 @@
         "transaction_amount":-146.0
     },
     {
-        "date_operation":"12.10.2021 17:21:54",
-        "transaction_amount":-152.0
+        "date_operation":"13.07.2021 13:13:13",
+        "transaction_amount":-159.0
     },
     {
-        "date_operation":"12.10.2021 19:16:06",
-        "transaction_amount":-219.32
+        "date_operation":"13.07.2021 22:45:37",
+        "transaction_amount":-98.0
     },
     {
-        "date_operation":"12.11.2021 12:34:17",
-        "transaction_amount":-292.93
-    },
-    {
-        "date_operation":"12.11.2021 12:44:32",
-        "transaction_amount":-100.36
+        "date_operation":"13.08.2021 17:37:23",
+        "transaction_amount":-34.0
     },
     {
         "date_operation":"13.09.2021 15:27:12",
@@ -336,16 +272,16 @@
         "transaction_amount":-269.8
     },
     {
-        "date_operation":"13.10.2021 15:23:23",
-        "transaction_amount":-158.35
+        "date_operation":"14.07.2021 10:58:47",
+        "transaction_amount":-94.0
     },
     {
-        "date_operation":"13.10.2021 16:07:34",
-        "transaction_amount":-58.38
+        "date_operation":"14.07.2021 18:43:47",
+        "transaction_amount":-2569.16
     },
     {
-        "date_operation":"13.11.2021 18:26:04",
-        "transaction_amount":-191.7
+        "date_operation":"14.08.2021 18:32:30",
+        "transaction_amount":-136.97
     },
     {
         "date_operation":"14.09.2021 13:44:51",
@@ -360,24 +296,12 @@
         "transaction_amount":-49.99
     },
     {
-        "date_operation":"14.10.2021 10:34:50",
-        "transaction_amount":-98.98
+        "date_operation":"15.08.2021 12:05:51",
+        "transaction_amount":-319.99
     },
     {
-        "date_operation":"14.10.2021 15:29:13",
-        "transaction_amount":-111.57
-    },
-    {
-        "date_operation":"14.10.2021 18:50:33",
-        "transaction_amount":-154.98
-    },
-    {
-        "date_operation":"14.11.2021 10:56:53",
-        "transaction_amount":-127.8
-    },
-    {
-        "date_operation":"14.11.2021 14:26:10",
-        "transaction_amount":-33.9
+        "date_operation":"15.08.2021 12:10:21",
+        "transaction_amount":-180.97
     },
     {
         "date_operation":"15.09.2021 10:18:44",
@@ -396,16 +320,16 @@
         "transaction_amount":-113.98
     },
     {
-        "date_operation":"15.10.2021 17:00:30",
-        "transaction_amount":-159.97
+        "date_operation":"16.07.2021 11:49:18",
+        "transaction_amount":-30.0
     },
     {
-        "date_operation":"15.11.2021 12:48:42",
-        "transaction_amount":-387.96
+        "date_operation":"16.08.2021 13:11:19",
+        "transaction_amount":-74.5
     },
     {
-        "date_operation":"15.11.2021 16:56:37",
-        "transaction_amount":-127.8
+        "date_operation":"16.08.2021 14:16:42",
+        "transaction_amount":-110.86
     },
     {
         "date_operation":"16.09.2021 12:15:45",
@@ -416,12 +340,8 @@
         "transaction_amount":-34.0
     },
     {
-        "date_operation":"16.11.2021 15:06:44",
-        "transaction_amount":-88.14
-    },
-    {
-        "date_operation":"16.11.2021 15:13:53",
-        "transaction_amount":-69.99
+        "date_operation":"17.08.2021 13:54:22",
+        "transaction_amount":-115.37
     },
     {
         "date_operation":"17.09.2021 16:47:00",
@@ -432,12 +352,8 @@
         "transaction_amount":-261.95
     },
     {
-        "date_operation":"17.10.2021 12:51:29",
-        "transaction_amount":-111.98
-    },
-    {
-        "date_operation":"17.10.2021 22:45:49",
-        "transaction_amount":-55.99
+        "date_operation":"18.08.2021 20:43:42",
+        "transaction_amount":-115.98
     },
     {
         "date_operation":"18.09.2021 12:39:05",
@@ -460,12 +376,36 @@
         "transaction_amount":-119.98
     },
     {
-        "date_operation":"18.11.2021 08:35:10",
-        "transaction_amount":-241.42
+        "date_operation":"19.07.2021 10:37:54",
+        "transaction_amount":-234.66
     },
     {
-        "date_operation":"18.11.2021 15:11:38",
-        "transaction_amount":-392.26
+        "date_operation":"19.07.2021 11:39:26",
+        "transaction_amount":-66.0
+    },
+    {
+        "date_operation":"19.07.2021 11:40:45",
+        "transaction_amount":-57.0
+    },
+    {
+        "date_operation":"19.07.2021 13:35:43",
+        "transaction_amount":-127.68
+    },
+    {
+        "date_operation":"19.07.2021 13:42:49",
+        "transaction_amount":-109.27
+    },
+    {
+        "date_operation":"19.07.2021 19:12:23",
+        "transaction_amount":-1759.96
+    },
+    {
+        "date_operation":"19.07.2021 19:12:54",
+        "transaction_amount":-5.9
+    },
+    {
+        "date_operation":"19.08.2021 21:22:58",
+        "transaction_amount":-226.7
     },
     {
         "date_operation":"19.09.2021 10:25:12",
@@ -480,32 +420,28 @@
         "transaction_amount":-113.98
     },
     {
-        "date_operation":"19.11.2021 10:05:18",
-        "transaction_amount":-1620.27
+        "date_operation":"20.08.2021 14:33:05",
+        "transaction_amount":-82.99
     },
     {
-        "date_operation":"19.11.2021 18:54:29",
-        "transaction_amount":-339.9
+        "date_operation":"20.08.2021 14:36:14",
+        "transaction_amount":-103.0
     },
     {
-        "date_operation":"20.10.2021 12:57:22",
-        "transaction_amount":-350.95
+        "date_operation":"22.06.2021 15:22:35",
+        "transaction_amount":-98.0
     },
     {
-        "date_operation":"20.10.2021 14:31:26",
-        "transaction_amount":-100.0
+        "date_operation":"22.06.2021 18:55:03",
+        "transaction_amount":-161.74
     },
     {
-        "date_operation":"20.10.2021 15:03:30",
-        "transaction_amount":-110.16
+        "date_operation":"22.06.2021 19:07:14",
+        "transaction_amount":-70.68
     },
     {
-        "date_operation":"21.09.2021 09:20:35",
-        "transaction_amount":-111.98
-    },
-    {
-        "date_operation":"21.10.2021 13:03:26",
-        "transaction_amount":-26.99
+        "date_operation":"22.06.2021 19:20:56",
+        "transaction_amount":-360.85
     },
     {
         "date_operation":"22.08.2021 14:43:00",
@@ -520,60 +456,28 @@
         "transaction_amount":-159.99
     },
     {
-        "date_operation":"22.09.2021 11:14:00",
+        "date_operation":"23.06.2021 18:29:10",
+        "transaction_amount":-125.95
+    },
+    {
+        "date_operation":"23.07.2021 18:51:35",
         "transaction_amount":-82.0
     },
     {
-        "date_operation":"22.09.2021 18:20:19",
-        "transaction_amount":-93.84
+        "date_operation":"23.07.2021 19:16:13",
+        "transaction_amount":-541.5
     },
     {
-        "date_operation":"22.09.2021 18:22:22",
-        "transaction_amount":-218.97
+        "date_operation":"25.06.2021 15:04:22",
+        "transaction_amount":-111.98
     },
     {
-        "date_operation":"22.10.2021 14:46:20",
-        "transaction_amount":-91.88
+        "date_operation":"26.06.2021 14:35:53",
+        "transaction_amount":-57.88
     },
     {
-        "date_operation":"22.10.2021 19:32:08",
-        "transaction_amount":-134.67
-    },
-    {
-        "date_operation":"23.10.2021 13:17:31",
-        "transaction_amount":-55.99
-    },
-    {
-        "date_operation":"23.10.2021 18:44:08",
-        "transaction_amount":-429.69
-    },
-    {
-        "date_operation":"24.09.2021 11:44:13",
-        "transaction_amount":-91.39
-    },
-    {
-        "date_operation":"24.09.2021 15:37:42",
-        "transaction_amount":-89.43
-    },
-    {
-        "date_operation":"24.09.2021 18:34:25",
-        "transaction_amount":-149.46
-    },
-    {
-        "date_operation":"24.10.2021 20:37:54",
-        "transaction_amount":-74.48
-    },
-    {
-        "date_operation":"25.09.2021 15:58:35",
-        "transaction_amount":-88.45
-    },
-    {
-        "date_operation":"25.09.2021 20:24:45",
-        "transaction_amount":-185.96
-    },
-    {
-        "date_operation":"25.10.2021 13:49:19",
-        "transaction_amount":-135.47
+        "date_operation":"26.07.2021 22:59:58",
+        "transaction_amount":-273.98
     },
     {
         "date_operation":"26.08.2021 11:28:44",
@@ -584,16 +488,16 @@
         "transaction_amount":-615.2
     },
     {
-        "date_operation":"26.09.2021 13:32:29",
-        "transaction_amount":-90.41
+        "date_operation":"27.06.2021 10:51:25",
+        "transaction_amount":-55.99
     },
     {
-        "date_operation":"26.09.2021 17:08:10",
-        "transaction_amount":-51.99
+        "date_operation":"27.06.2021 18:07:46",
+        "transaction_amount":-257.99
     },
     {
-        "date_operation":"26.10.2021 18:39:40",
-        "transaction_amount":-106.0
+        "date_operation":"27.06.2021 19:19:05",
+        "transaction_amount":-114.98
     },
     {
         "date_operation":"27.08.2021 14:18:35",
@@ -612,32 +516,12 @@
         "transaction_amount":-69.99
     },
     {
-        "date_operation":"27.09.2021 09:04:41",
-        "transaction_amount":-57.99
+        "date_operation":"28.06.2021 22:43:32",
+        "transaction_amount":-55.99
     },
     {
-        "date_operation":"27.09.2021 12:36:29",
-        "transaction_amount":-67.0
-    },
-    {
-        "date_operation":"27.09.2021 14:13:04",
-        "transaction_amount":-315.75
-    },
-    {
-        "date_operation":"27.09.2021 17:50:29",
-        "transaction_amount":-82.97
-    },
-    {
-        "date_operation":"27.10.2021 12:01:23",
-        "transaction_amount":-90.9
-    },
-    {
-        "date_operation":"27.10.2021 18:30:36",
-        "transaction_amount":-238.84
-    },
-    {
-        "date_operation":"27.10.2021 22:02:40",
-        "transaction_amount":-109.98
+        "date_operation":"28.07.2021 19:26:23",
+        "transaction_amount":-100.58
     },
     {
         "date_operation":"28.08.2021 13:11:46",
@@ -652,40 +536,20 @@
         "transaction_amount":-110.98
     },
     {
-        "date_operation":"28.09.2021 18:16:40",
-        "transaction_amount":-92.61
+        "date_operation":"29.06.2021 21:03:11",
+        "transaction_amount":-34.49
     },
     {
-        "date_operation":"28.09.2021 18:52:47",
-        "transaction_amount":-443.75
-    },
-    {
-        "date_operation":"28.10.2021 18:33:59",
-        "transaction_amount":-390.94
-    },
-    {
-        "date_operation":"28.10.2021 22:10:33",
-        "transaction_amount":-86.98
+        "date_operation":"29.07.2021 18:03:32",
+        "transaction_amount":-157.0
     },
     {
         "date_operation":"29.08.2021 16:31:44",
         "transaction_amount":-121.83
     },
     {
-        "date_operation":"29.09.2021 10:25:04",
-        "transaction_amount":-131.98
-    },
-    {
-        "date_operation":"29.09.2021 14:44:43",
-        "transaction_amount":-146.0
-    },
-    {
-        "date_operation":"29.09.2021 18:26:52",
-        "transaction_amount":-137.95
-    },
-    {
-        "date_operation":"29.10.2021 11:00:41",
-        "transaction_amount":-188.0
+        "date_operation":"30.06.2021 14:39:56",
+        "transaction_amount":-61.0
     },
     {
         "date_operation":"30.08.2021 09:33:10",
@@ -700,16 +564,8 @@
         "transaction_amount":-90.41
     },
     {
-        "date_operation":"30.09.2021 13:57:41",
-        "transaction_amount":-146.0
-    },
-    {
-        "date_operation":"30.09.2021 18:14:25",
-        "transaction_amount":-149.64
-    },
-    {
-        "date_operation":"30.10.2021 21:40:50",
-        "transaction_amount":-145.97
+        "date_operation":"31.07.2021 21:29:16",
+        "transaction_amount":-100.58
     },
     {
         "date_operation":"31.08.2021 12:28:08",

@@ -72,7 +72,7 @@ def filter_data_range(input_data, date_string):
     filtered_data = [
         item
         for item in input_data
-        if start_range <= datetime.strptime(item["date_operation"][:10], "%d.%m.%Y") <= end_range
+        if "date_operation" in item and start_range <= datetime.strptime(item["date_operation"][:10], "%d.%m.%Y") <= end_range
     ]
     logger.info(f"Найдено {len(filtered_data)} операций в указанном диапазоне дат.")
 
@@ -112,7 +112,7 @@ def get_card_data(transactions: list[dict]) -> list[dict]:
 
         card_number = transaction.get("card_number", "")
         if isinstance(card_number, str) and len(card_number) >= 4:
-            card_number = card_number[-4:].strip()
+            card_number = "*" + card_number[-4:].strip()
         else:
             logger.warning(f"Некорректный номер карты: {card_number}.")
             continue
@@ -190,7 +190,7 @@ def get_currency_rates(api: str, currencies: dict) -> list[dict]:
                 response_json = response.json()
 
                 if "data" in response_json:
-                    rate = list(response_json["data"].values())[0]
+                    rate = list(response_json["data"].values())
                     result.append({"currency": currency, "rate": rate})
                     logger.info(f"Получены данные для {currency}: курс {rate}")
                 else:

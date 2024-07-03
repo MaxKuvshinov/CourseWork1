@@ -8,4 +8,3 @@ from src.api_config import date
 print(main(date))
 print(spending_category(data_transactions, "Супермаркеты", date))
 print(find_transactions_with_phone_numbers(data_transactions))
-print(find_transactions_with_phone_numbers(data_transactions))
