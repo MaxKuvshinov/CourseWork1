@@ -28,7 +28,7 @@ with open(json_path, "r") as file:
     data_json = json.load(file)
 
 logger.info("Заданная дата")
-date = "19-11-2021 15:30:00"
+date = "20-11-2021 15:30:00"
 
 load_dotenv()
 

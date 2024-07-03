@@ -110,23 +110,25 @@ def get_card_data(transactions: list[dict]) -> list[dict]:
             logger.error(f"Транзакция имеет неверный тип: {type(transaction)}. Ожидался dict.")
             continue
 
-        card_number = transaction.get("Card_number", "")
+        card_number = transaction.get("card_number", "")
         if isinstance(card_number, str) and len(card_number) >= 4:
-            card_number = card_number[-4:]
+            card_number = card_number[-4:].strip()
         else:
             logger.warning(f"Некорректный номер карты: {card_number}.")
             continue
 
-        amount = transaction["Transaction_amount"]
+        amount = transaction.get("transaction_amount", 0)
+        cashback = transaction.get("cashback", 0)
+
         if card_number not in card_data:
             card_data[card_number] = {"total_spent": 0, "cashback": 0}
+
         card_data[card_number]["total_spent"] += amount
-        cashback = transaction["cashback"]
 
         if isinstance(cashback, (int, float)) and not math.isnan(cashback):
             card_data[card_number]["cashback"] += cashback
         else:
-            card_data[card_number]["cashback"] += amount // 100
+            card_data[card_number]["cashback"] += amount // 100  # Примерное значение кэшбэка, если не указано явно
 
     result = [
         {

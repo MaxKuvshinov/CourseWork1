@@ -1,124 +1,254 @@
-import pytest
-from src.utils import get_stock_price, read_transactions_exel, get_currency_rates, filter_data_range, get_greeting, get_card_data, get_top_transactions
+# -*- coding: utf-8 -*-
+import datetime
 import os
-import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
+
 import pandas as pd
+import pytest
+from dotenv import load_dotenv
+from src.utils import read_transactions_exel, filter_data_range, get_greeting,get_response_greeting,get_card_data, get_top_transactions, get_currency_rates, get_stock_price
 
-from datetime import datetime
 
+load_dotenv()
 
-@pytest.fixture
-def sample_transactions():
-    data = {
-        "date_operation": ["01.04.2023", "01.05.2023", "01.06.2023", "01.07.2023"],
-        "category": ["Food", "Food", "Food", "Shopping"],
-        "transaction_amount": [100.0, 200.0, 150.0, 300.0],
-        "status": ["OK", "OK", "OK", "FAILED"],
-        "description": ["Grocery", "Restaurant", "Cafe", "Clothes"]
-    }
-    return pd.DataFrame(data)
+API_KEY_CURRENCY = os.getenv("API_KEY_CURRENCY")
+API_KEY_STOCKS = os.getenv("API_KEY_STOCKS")
 
 
 @patch("pandas.read_excel")
 def test_read_transactions_exel(mock_read_excel):
-    mock_read_excel.return_value = pd.DataFrame({
-        "ƒ‡Ú‡ ÓÔÂ‡ˆËË": ["01.04.2023"],
-        "ƒ‡Ú‡ ÔÎ‡ÚÂÊ‡": ["02.04.2023"],
-        "ÕÓÏÂ Í‡Ú˚": ["1234"],
-        "—Ú‡ÚÛÒ": ["OK"],
-        "—ÛÏÏ‡ ÓÔÂ‡ˆËË": [100.0],
-        "¬‡Î˛Ú‡ ÓÔÂ‡ˆËË": ["RUB"],
-        "—ÛÏÏ‡ ÔÎ‡ÚÂÊ‡": [100.0],
-        "¬‡Î˛Ú‡ ÔÎ‡ÚÂÊ‡": ["RUB"],
-        " ˝¯·˝Í": [1.0],
-        " ‡ÚÂ„ÓËˇ": ["Food"],
-        "MCC": [5411],
-        "ŒÔËÒ‡ÌËÂ": ["Grocery"],
-        "¡ÓÌÛÒ˚ (‚ÍÎ˛˜‡ˇ Í˝¯·˝Í)": [1.0],
-        "ŒÍÛ„ÎÂÌËÂ Ì‡ ËÌ‚ÂÒÚÍÓÔËÎÍÛ": [0.0],
-        "—ÛÏÏ‡ ÓÔÂ‡ˆËË Ò ÓÍÛ„ÎÂÌËÂÏ": [100.0]
-    })
+    file_name = "test.xlsx"
+    file_path = os.path.join(os.path.dirname(__file__), file_name)
+    data = {
+        "–î–∞—Ç–∞ –æ–ø–µ—Ä–∞—Ü–∏–∏": ["08.03.2018 20:35:03", "08.03.2018 20:12:02"],
+        "–î–∞—Ç–∞ –ø–ª–∞—Ç–µ–∂–∞": ["10.03.2018", "10.03.2018"],
+        "–ù–æ–º–µ—Ä –∫–∞—Ä—Ç—ã": ["*7197", "*7197"],
+        "–°—Ç–∞—Ç—É—Å": ["OK", "OK"],
+        "–°—É–º–º–∞ –æ–ø–µ—Ä–∞—Ü–∏–∏": [-899.00, -1194.00],
+        "–í–∞–ª—é—Ç–∞ –æ–ø–µ—Ä–∞—Ü–∏–∏": ["RUB", "RUB"],
+        "–ö—ç—à–±—ç–∫": [3, 0],
+        "–ö–∞—Ç–µ–≥–æ—Ä–∏—è": ["–û–¥–µ–∂–¥–∞ –∏ –æ–±—É–≤—å", "–û–¥–µ–∂–¥–∞ –∏ –æ–±—É–≤—å"],
+        "–û–ø–∏—Å–∞–Ω–∏–µ": ["OOO Sedmaya Avenyu", "Kontsept Klub"],
+        "–°—É–º–º–∞ –ø–ª–∞—Ç–µ–∂–∞": [0, 0],
+        "–í–∞–ª—é—Ç–∞ –ø–ª–∞—Ç–µ–∂–∞": ["RUB", "RUB"],
+        "MCC": [0, 0],
+        "–ë–æ–Ω—É—Å—ã (–≤–∫–ª—é—á–∞—è –∫—ç—à–±—ç–∫)": [0, 0],
+        "–û–∫—Ä—É–≥–ª–µ–Ω–∏–µ –Ω–∞ –∏–Ω–≤–µ—Å—Ç–∫–æ–ø–∏–ª–∫—É": [0, 0],
+        "–°—É–º–º–∞ –æ–ø–µ—Ä–∞—Ü–∏–∏ —Å –æ–∫—Ä—É–≥–ª–µ–Ω–∏–µ–º": [0, 0],
+    }
+    df = pd.DataFrame(data)
+    mock_read_excel.return_value = df
+    result = read_transactions_exel(file_path)
+    assert len(result) == 2
+    assert result[0] == {
+        "Date_operation": "08.03.2018 20:35:03",
+        "Payment_date": "10.03.2018",
+        "Card_numbers": "*7197",
+        "Status": "OK",
+        "amount": -899.00,
+        "currency": "RUB",
+        "Payment amount": 0,
+        "Payment currency": "RUB",
+        "Cashback": 3,
+        "Category": "–û–¥–µ–∂–¥–∞ –∏ –æ–±—É–≤—å",
+        "MCC": 0,
+        "Description": "OOO Sedmaya Avenyu",
+        "Bonuses": 0,
+        "Rounding_investment_bank": 0,
+        "Amount_rounding_operation": 0,
+    }
+    assert result[1] == {
+        "Date_operation": "08.03.2018 20:12:02",
+        "Payment_date": "10.03.2018",
+        "Card_numbers": "*7197",
+        "Status": "OK",
+        "amount": -1194.00,
+        "currency": "RUB",
+        "Payment amount": 0,
+        "Payment currency": "RUB",
+        "Cashback": 0,
+        "Category": "–û–¥–µ–∂–¥–∞ –∏ –æ–±—É–≤—å",
+        "MCC": 0,
+        "Description": "Kontsept Klub",
+        "Bonuses": 0,
+        "Rounding_investment_bank": 0,
+        "Amount_rounding_operation": 0,
+    }
 
-    result = read_transactions_exel("dummy_path")
-    assert isinstance(result, list)
-    assert len(result) == 1
-    assert result[0]["date_operation"] == "01.04.2023"
+
+@pytest.mark.parametrize(
+    "date, expected",
+    [
+        (datetime.datetime(2021, 12, 31, 11, 0, 0), "–î–æ–±—Ä–æ–µ —É—Ç—Ä–æ"),
+        (datetime.datetime(2021, 12, 31, 15, 0, 0), "–î–æ–±—Ä—ã–π –¥–µ–Ω—å"),
+        (datetime.datetime(2021, 12, 31, 20, 0, 0), "–î–æ–±—Ä—ã–π –≤–µ—á–µ—Ä"),
+        (datetime.datetime(2021, 12, 31, 23, 0, 0), "–î–æ–±—Ä–æ–π –Ω–æ—á–∏"),
+    ],
+)
+def test_get_greeting(date, expected):
+    assert get_greeting(date) == expected
 
 
-def test_filter_data_range(sample_transactions):
-    input_data = sample_transactions.to_dict(orient='records')
-    filtered_data = filter_data_range(input_data, "01-07-2020 23:59:59")
-
-    assert len(filtered_data) == 4
-    assert filtered_data[0]["date_operation"] == "01.04.2020"
-
-
-@pytest.mark.parametrize("hour,expected_greeting", [
-    (7, "ƒÓ·ÓÂ ÛÚÓ!"),
-    (13, "ƒÓ·˚È ‰ÂÌ¸!"),
-    (19, "ƒÓ·˚È ‚Â˜Â!"),
-    (23, "ƒÓ·ÓÈ ÌÓ˜Ë!")
-])
-def test_get_greeting(hour, expected_greeting):
-    with patch("my_module.datetime") as mock_datetime:
-        mock_datetime.now.return_value = datetime(2023, 7, 1, hour)
-        assert get_greeting(mock_datetime.now()) == expected_greeting
+@pytest.mark.parametrize(
+    "date, expected",
+    [
+        ("31-12-2021 10:44:00", "–î–æ–±—Ä–æ–µ —É—Ç—Ä–æ"),
+        ("31-12-2021 16:44:00", "–î–æ–±—Ä—ã–π –¥–µ–Ω—å"),
+        ("31-12-2021 19:44:00", "–î–æ–±—Ä—ã–π –≤–µ—á–µ—Ä"),
+        ("31-12-2021 23:44:00", "–î–æ–±—Ä–æ–π –Ω–æ—á–∏"),
+    ],
+)
+def test_get_response_greeting(date, expected):
+    assert get_response_greeting(date) == expected
 
 
-def test_get_card_data(sample_transactions):
-    input_data = sample_transactions.to_dict(orient='records')
-    card_data = get_card_data(input_data)
+def test_filter_data_range(transactions):
+    result = filter_data_range(transactions, "01-10-2021 09:56:08")
+    assert result == []
 
-    assert isinstance(card_data, list)
-    assert len(card_data) > 0
-    assert "last_digits" in card_data[0]
-    assert "total_spent" in card_data[0]
-    assert "cashback" in card_data[0]
+    result = filter_data_range(transactions, "30-09-2020 11:53:24")
+    assert result == [
+        {
+            "Amount_rounding_operation": 120000.0,
+            "Bonuses": 0,
+            "Card_numbers": "*4556",
+            "Cashback": "NaN",
+            "Category": "–ü–µ—Ä–µ–≤–æ–¥—ã",
+            "Date_operation": "30.09.2020 11:53:24",
+            "Description": "–ò–≥–æ—Ä—å –ë.",
+            "MCC": "NaN",
+            "Payment amount": 120000.0,
+            "Payment currency": "RUB",
+            "Payment_date": "30.09.2020",
+            "Rounding_investment_bank": 0,
+            "Status": "OK",
+            "amount": 120000.0,
+            "currency": "RUB",
+        }
+    ]
 
 
-def test_get_top_transactions(sample_transactions):
-    input_data = sample_transactions.to_dict(orient='records')
-    top_transactions = get_top_transactions(input_data)
+def test_get_card_data(transactions):
+    result = get_card_data(
+        [
+            {
+                "Date_operation": "08.10.2021 20:15:16",
+                "Payment_date": "08.10.2021",
+                "Card_numbers": "nan",
+                "Status": "OK",
+                "amount": -399.0,
+                "currency": "RUB",
+                "Payment amount": -399.0,
+                "Payment currency": "RUB",
+                "Cashback": 3.0,
+                "Category": "–û–Ω–ª–∞–π–Ω-–∫–∏–Ω–æ—Ç–µ–∞—Ç—Ä—ã",
+                "MCC": 7841.0,
+                "Description": "–ò–≤–∏",
+                "Bonuses": 3,
+                "Rounding_investment_bank": 0,
+                "Amount_rounding_operation": 399.0,
+            },
+            {
+                "Date_operation": "18.08.2019 17:54:47",
+                "Payment_date": "18.08.2019",
+                "Card_numbers": "*1112",
+                "Status": "FAILED",
+                "amount": -3000.0,
+                "currency": "RUB",
+                "Payment amount": -3000.0,
+                "Payment currency": "RUB",
+                "Cashback": "nan",
+                "Category": "nan",
+                "MCC": "nan",
+                "Description": "–ü–µ—Ä–µ–≤–æ–¥ —Å –∫–∞—Ä—Ç—ã",
+                "Bonuses": 0,
+                "Rounding_investment_bank": 0,
+                "Amount_rounding_operation": 3000.0,
+            },
+        ]
+    )
+    assert result == [
+        {"cashback": 3.0, "last_digits": "–ù–µ–∏–∑–≤–µ—Å—Ç–Ω–∞—è –∫–∞—Ä—Ç–∞", "total_spent": -399.0},
+        {"cashback": 0, "last_digits": "*1112", "total_spent": -3000.0},
+    ]
 
-    assert isinstance(top_transactions, list)
-    assert len(top_transactions) == 3
-    assert top_transactions[0]["transaction_amount"] == 200.0
+    result = get_card_data(transactions)
+    assert result == [
+        {"cashback": 0, "last_digits": "*4556", "total_spent": 170000.0},
+        {"cashback": 0, "last_digits": "*7197", "total_spent": -187.0},
+    ]
+
+
+def test_getting_top_specified_period(transactions_data):
+    result = get_top_transactions(transactions_data)
+    assert result == [
+        {"amount": -3000.0, "category": "–ü–µ—Ä–µ–≤–æ–¥—ã", "date": "01.01.2018", "description": "–õ–∏–Ω–∑–æ–º–∞—Ç –¢–¶ –Æ–Ω–æ—Å—Ç—å"},
+        {"amount": -316.0, "category": "–ö—Ä–∞—Å–æ—Ç–∞", "date": "01.01.2018", "description": "OOO Balid"},
+        {"amount": 200.0, "category": "–ü–µ—Ä–µ–≤–æ–¥—ã", "date": "27.08.2019", "description": "–ü–æ–ø–æ–ª–Ω–µ–Ω–∏–µ —Å—á–µ—Ç–∞"},
+        {"amount": -100.0, "category": "–°–≤—è–∑—å", "date": "30.08.2019", "description": "–ú–¢–°"},
+        {"amount": -21.0, "category": "–ö—Ä–∞—Å–æ—Ç–∞", "date": "03.01.2018", "description": "OOO Balid"},
+    ]
 
 
 @patch("requests.get")
 def test_get_currency_rates(mock_get):
-    mock_response = {
-        "data": {"USDRUB": 74.5}
-    }
-    mock_get.return_value.status_code = 200
-    mock_get.return_value.json.return_value = mock_response
+    api = "https://api.example.com"
+    currencies = {"user_currencies": ["USD", "EUR", "GBP"]}
 
-    api_url = "http://fakeapi.com"
-    currencies = {"user_currencies": ["USD"]}
-    rates = get_currency_rates(api_url, currencies)
+    mock_response = Mock()
+    mock_response.json.return_value = {"data": {"USD": 1.0, "EUR": 2.0, "GBP": 3.0}}
+    mock_get.return_value = mock_response
 
-    assert isinstance(rates, list)
-    assert len(rates) == 1
-    assert rates[0]["currency"] == "USD"
-    assert rates[0]["rate"] == 74.5
+    result = get_currency_rates(api, currencies)
+    assert isinstance(result, list)
+    assert len(result) == 3
+    for item in result:
+        assert isinstance(item, dict)
+        assert "currency" in item
+        assert "rate" in item
 
 
 @patch("requests.get")
-def test_get_stock_price(mock_get):
-    mock_response = {
-        "c": 150.0
-    }
-    mock_get.return_value.status_code = 200
-    mock_get.return_value.json.return_value = mock_response
+def test_get_currency_rates_error(mock_get):
+    api = "https://api.example.com"
+    currencies = {"user_currencies": ["USD", "EUR"]}
 
-    api_url = "http://fakeapi.com"
-    stocks = {"user_stocks": ["AAPL"]}
-    prices = get_stock_price(api_url, stocks)
+    import requests
 
-    assert isinstance(prices, list)
-    assert len(prices) == 1
-    assert prices[0]["stock"] == "AAPL"
-    assert prices[0]["price"] == 150.0
+    mock_get.side_effect = requests.exceptions.RequestException
+
+    result = get_currency_rates(api, currencies)
+    assert result == []
 
 
+def test_get_stock_price():
+    api = "https://api.example.com/stock/prices"
+    stocks = {"user_stocks": ["AAPL", "GOOG", "MSFT"]}
+
+    with patch("requests.get") as mock_get:
+        mock_response = Mock()
+        mock_response.json.return_value = {"c": 100.0}
+        mock_get.return_value = mock_response
+
+        result = get_stock_price(api, stocks)
+
+        assert len(result) == 3
+        assert result[0]["stock"] == "AAPL"
+        assert result[0]["price"] == 100.0
+        assert result[1]["stock"] == "GOOG"
+        assert result[1]["price"] == 100.0
+        assert result[2]["stock"] == "MSFT"
+        assert result[2]["price"] == 100.0
+
+
+@patch("requests.get")
+def test_get_stock_price_error(mock_get):
+    api = "https://api.example.com"
+    currencies = {"user_stocks": ["AAPL", "AMZN", "GOOGL"]}
+
+    import requests
+
+    mock_get.side_effect = requests.exceptions.RequestException
+
+    result = get_stock_price(api, currencies)
+    assert result == []

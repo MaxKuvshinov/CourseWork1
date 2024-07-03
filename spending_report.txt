@@ -480,6 +480,14 @@
         "transaction_amount":-113.98
     },
     {
+        "date_operation":"19.11.2021 10:05:18",
+        "transaction_amount":-1620.27
+    },
+    {
+        "date_operation":"19.11.2021 18:54:29",
+        "transaction_amount":-339.9
+    },
+    {
         "date_operation":"20.10.2021 12:57:22",
         "transaction_amount":-350.95
     },
