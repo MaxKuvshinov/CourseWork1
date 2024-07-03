@@ -2,12 +2,21 @@
 import datetime
 import os
 from unittest.mock import Mock, patch
-import requests
 
 import pandas as pd
 import pytest
+import requests
 from dotenv import load_dotenv
-from src.utils import read_transactions_exel, filter_data_range, get_greeting,get_response_greeting,get_card_data, get_top_transactions, get_currency_rates, get_stock_price
+from src.utils import (
+    filter_data_range,
+    get_card_data,
+    get_currency_rates,
+    get_greeting,
+    get_response_greeting,
+    get_stock_price,
+    get_top_transactions,
+    read_transactions_exel,
+)
 
 load_dotenv()
 
@@ -332,8 +341,6 @@ def test_get_currency_rates_error(mock_get):
     api = "https://api.example.com"
     currencies = {"user_currencies": ["USD", "EUR"]}
 
-    import requests
-
     mock_get.side_effect = requests.exceptions.RequestException
 
     result = get_currency_rates(api, currencies)
@@ -350,7 +357,6 @@ def mock_requests_get():
 def test_get_stock_price_success(mock_requests_get):
     api = "https://api.example.com/stocks"
     stocks = {"user_stocks": ["AAPL", "GOOGL", "MSFT"]}
-
 
     mock_response_aapl = Mock()
     mock_response_aapl.status_code = 200
@@ -374,7 +380,7 @@ def test_get_stock_price_success(mock_requests_get):
     expected_result = [
         {"stock": "AAPL", "price": 150.0},
         {"stock": "GOOGL", "price": 2500.0},
-        {"stock": "MSFT", "price": 300.0}
+        {"stock": "MSFT", "price": 300.0},
     ]
 
     assert result == expected_result
@@ -384,8 +390,6 @@ def test_get_stock_price_success(mock_requests_get):
 def test_get_stock_price_error(mock_get):
     api = "https://api.example.com"
     currencies = {"user_stocks": ["AAPL", "AMZN", "GOOGL"]}
-
-    import requests
 
     mock_get.side_effect = requests.exceptions.RequestException
 

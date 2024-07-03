@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
-import os
 import logging
+import os
 
 from dotenv import load_dotenv
 

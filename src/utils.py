@@ -2,7 +2,7 @@ import logging
 import math
 import os
 from datetime import datetime
-from typing import Union
+from typing import Union, List, Dict, Any
 
 import pandas as pd
 import requests
@@ -60,7 +60,7 @@ logger.info(f"Путь к файлу с операциями{json_path}")
 data_transactions = read_transactions_exel(json_path)
 
 
-def filter_data_range(input_data, date_string):
+def filter_data_range(input_data: List[Dict[str, Any]], date_string: str) -> List[Dict[str, Any]]:
     """Функция, которая фильтрует данные по диапазону дат от первого дня месяца до указанной даты."""
     dt = datetime.strptime(date_string, "%d-%m-%Y %H:%M:%S")
     first_day = dt.replace(day=1)
@@ -72,7 +72,8 @@ def filter_data_range(input_data, date_string):
     filtered_data = [
         item
         for item in input_data
-        if "date_operation" in item and start_range <= datetime.strptime(item["date_operation"][:10], "%d.%m.%Y") <= end_range
+        if "date_operation" in item
+        and start_range <= datetime.strptime(item["date_operation"][:10], "%d.%m.%Y") <= end_range
     ]
     logger.info(f"Найдено {len(filtered_data)} операций в указанном диапазоне дат.")
 
@@ -126,7 +127,7 @@ def get_card_data(transactions: list[dict]) -> list[dict]:
         card_data[card_number]["total_spent"] += amount
 
         if isinstance(cashback, (int, float)) and not math.isnan(cashback):
-            card_data[card_number]["cashback"] += cashback
+            card_data[card_number]["cashback"] += int(cashback)
         else:
             card_data[card_number]["cashback"] += amount // 100  # Примерное значение кэшбэка, если не указано явно
 

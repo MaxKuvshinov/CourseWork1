@@ -24,8 +24,8 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def main(date):
-    """Функция, которая вызывает остальные функции для главной страницы, преобразовывая в необходимый словарь """
+def main(date: str) -> str:
+    """Функция, которая вызывает остальные функции для главной страницы, преобразовывая в необходимый словарь"""
     logger.info("Приветствие")
     greeting = get_response_greeting(date)
     logger.info("Список транзакций")

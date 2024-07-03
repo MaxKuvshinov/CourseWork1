@@ -1,7 +1,7 @@
 import logging
 import os
 from datetime import datetime, timedelta
-
+from typing import Callable, Any, Optional
 import pandas as pd
 
 log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
@@ -15,10 +15,11 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def write_to_file(file_name: str):
+def write_to_file(file_name: str) -> Callable[[Callable[..., str]], Callable[..., str]]:
     """Декоратор для записи результата функции в файл."""
-    def decorator(func):
-        def wrapper(*args, **kwargs):
+
+    def decorator(func: Callable[..., str]) -> Callable[..., str]:
+        def wrapper(*args: Any, **kwargs: Any) -> str:
             logger.info(f"Вызов функции {func.__name__}")
             result = func(*args, **kwargs)
             try:
@@ -35,7 +36,7 @@ def write_to_file(file_name: str):
 
 
 @write_to_file(file_name="spending_report.txt")
-def spending_category(transactions: pd.DataFrame, category: str, date: str = None) -> str:
+def spending_category(transactions: pd.DataFrame, category: str, date: Optional[str] = None) -> str:
     """Функция для анализа трат по категории за последние три месяца."""
     if date is None:
         selected_date = datetime.today().strftime("%Y-%m-%d")

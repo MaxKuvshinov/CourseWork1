@@ -1,8 +1,8 @@
+import json
 import logging
 import os
 import re
 from typing import Dict, List
-import json
 
 log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
 os.makedirs(log_dir, exist_ok=True)
@@ -25,10 +25,7 @@ def find_transactions_with_phone_numbers(data: List[Dict]) -> str:
         """Функция, которая проверяет, содержит ли описание транзакции номер телефона"""
         return bool(phone_pattern.search(transaction.get("description", "")))
 
-    transactions_with_phone = [
-        transaction for transaction in data
-        if contains_phone_number(transaction)
-    ]
+    transactions_with_phone = [transaction for transaction in data if contains_phone_number(transaction)]
 
     logger.info(f"Найдено {len(transactions_with_phone)} транзакций с номерами телефонов.")
 
