@@ -1,12 +1,12 @@
 import logging
+import math
 import os
 from datetime import datetime
-import math
-import requests
-from src.external_api import API_KEY_CURRENCY, API_KEY_STOCKS
 from typing import Union
-import pandas as pd
 
+import pandas as pd
+import requests
+from src.api_config import API_KEY_CURRENCY, API_KEY_STOCKS
 
 log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
 os.makedirs(log_dir, exist_ok=True)
@@ -20,45 +20,62 @@ logger.addHandler(file_handler)
 
 
 def read_transactions_exel(operations_list: str) -> list[dict]:
-    df = pd.read_excel(operations_list)
+    """Функция, которая читает список операций из Excel-файла и преобразует в словарь"""
+    try:
+        logger.info(f"Чтение данных из файла: {operations_list}")
+        df = pd.read_excel(operations_list)
+    except FileNotFoundError:
+        logger.error(f"Файл {operations_list} не найден.")
+        return []
+    except Exception as e:
+        logger.error(f"Ошибка при чтении файла {operations_list}: {e}")
+        return []
     new_operations_list = []
     for index, row in df.iterrows():
         operations_dict = {
-            "Date_operation": row["Дата операции"],
-            "Date_payment": row["Дата платежа"],
-            "Card_number": row.get("Номер карты", ""),
-            "Status": row["Статус"],
-            "Transaction_amount": row["Сумма операции"],
-            "Transaction_currency": row["Валюта операции"],
-            "Amount_payment": row["Сумма платежа"],
-            "Payment_currency": row["Валюта платежа"],
-            "Cashback": row["Кэшбэк"],
-            "Category": row["Категория"],
+            "date_operation": row["Дата операции"],
+            "date_payment": row["Дата платежа"],
+            "card_number": row.get("Номер карты", ""),
+            "status": row["Статус"],
+            "transaction_amount": row["Сумма операции"],
+            "transaction_currency": row["Валюта операции"],
+            "amount_payment": row["Сумма платежа"],
+            "payment_currency": row["Валюта платежа"],
+            "cashback": row["Кэшбэк"],
+            "category": row["Категория"],
             "MCC": row["MCC"],
-            "Description": row["Описание"],
-            "Bonuses": row["Бонусы (включая кэшбэк)"],
-            "Rounding_investment_bank": row["Округление на инвесткопилку"],
-            "Rounded_transaction_amount": row["Сумма операции с округлением"],
+            "description": row["Описание"],
+            "bonuses": row["Бонусы (включая кэшбэк)"],
+            "rounding_investment_bank": row["Округление на инвесткопилку"],
+            "rounded_transaction_amount": row["Сумма операции с округлением"],
         }
         new_operations_list.append(operations_dict)
 
+    logger.info(f"Успешно прочитано {len(new_operations_list)} операций из файла.")
     return new_operations_list
 
 
 json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/operations.xls"))
+logger.info(f"Путь к файлу с операциями{json_path}")
 data_transactions = read_transactions_exel(json_path)
 
 
 def filter_data_range(input_data, date_string):
+    """Функция, которая фильтрует данные по диапазону дат от первого дня месяца до указанной даты."""
     dt = datetime.strptime(date_string, "%d-%m-%Y %H:%M:%S")
     first_day = dt.replace(day=1)
 
     start_range = first_day
     end_range = dt
+    logger.info(f"Диапазон дат: с {start_range.strftime('%d.%m.%Y')} по {end_range.strftime('%d.%m.%Y')}")
 
     filtered_data = [
-        item for item in input_data if start_range <= datetime.strptime(item["Date_operation"][:10], "%d.%m.%Y") <= end_range
+        item
+        for item in input_data
+        if start_range <= datetime.strptime(item["date_operation"][:10], "%d.%m.%Y") <= end_range
     ]
+    logger.info(f"Найдено {len(filtered_data)} операций в указанном диапазоне дат.")
+
     return filtered_data
 
 
@@ -77,12 +94,15 @@ def get_greeting(time: datetime) -> str:
 
 
 def get_response_greeting(date_and_time: str) -> str:
+    """Возвращает приветствие в зависимости от переданного времени в строковом формате."""
     logger.info("Вывод приветствие в зависимости от времени дня")
     date_time = get_greeting(datetime.strptime(date_and_time, "%d-%m-%Y %H:%M:%S"))
     return date_time
 
 
 def get_card_data(transactions: list[dict]) -> list[dict]:
+    """Функция, которая анализирует транзакции и возвращает данные о картах с общей суммой трат и кэшбэком."""
+
     card_data = {}
 
     for transaction in transactions:
@@ -94,42 +114,65 @@ def get_card_data(transactions: list[dict]) -> list[dict]:
         if isinstance(card_number, str) and len(card_number) >= 4:
             card_number = card_number[-4:]
         else:
+            logger.warning(f"Некорректный номер карты: {card_number}.")
             continue
 
         amount = transaction["Transaction_amount"]
         if card_number not in card_data:
-            card_data[card_number] = {
-                "total_spent": 0,
-                "cashback": 0
-            }
+            card_data[card_number] = {"total_spent": 0, "cashback": 0}
         card_data[card_number]["total_spent"] += amount
-        cashback = transaction["Cashback"]
+        cashback = transaction["cashback"]
 
         if isinstance(cashback, (int, float)) and not math.isnan(cashback):
             card_data[card_number]["cashback"] += cashback
         else:
             card_data[card_number]["cashback"] += amount // 100
 
-    result = [{"last_digits": card,
-               "total_spent": round(data["total_spent"], 2),
-               "cashback": round(max(data["cashback"], 0), 2)}
-              for card, data in card_data.items()]
+    result = [
+        {
+            "last_digits": card,
+            "total_spent": round(data["total_spent"], 2),
+            "cashback": round(max(data["cashback"], 0), 2),
+        }
+        for card, data in card_data.items()
+    ]
 
+    logger.info(f"Обработано {len(result)} карт.")
     return result
 
 
 def get_top_transactions(transactions: list[dict]) -> list[dict]:
-    df = pd.DataFrame(transactions)
-    required_columns = ["Transaction_amount", "Status", "Date_operation", "Category", "Description"]
-    for column in required_columns:
-        if column not in df.columns:
-            raise ValueError(f"Такой столбец отсутствует")
-    df = df[df["Status"] == "OK"]
-    sorted_df = df.sort_values(by="Transaction_amount", ascending=False)
-    top_5_transactions = sorted_df.head(5)
-    result = top_5_transactions[["Date_operation", "Transaction_amount", "Category", "Description"]].to_dict(orient="records")
+    """Функция, которая возвращает топ-5 транзакций с наибольшей суммой"""
 
-    return result
+    logger.info("Начало обработки для получения топ-5 транзакций.")
+    try:
+        df = pd.DataFrame(transactions)
+        logger.info("Транзакции успешно преобразованы в DataFrame.")
+
+        required_columns = ["transaction_amount", "status", "date_operation", "category", "description"]
+        for column in required_columns:
+            if column not in df.columns:
+                logger.error(f"Отсутствует необходимый столбец: {column}")
+                raise ValueError(f"Отсутствует необходимый столбец: {column}")
+
+        df = df[df["status"] == "OK"]
+        logger.info("Фильтрация транзакций со статусом 'OK' завершена.")
+
+        sorted_df = df.sort_values(by="transaction_amount", ascending=False)
+        logger.info("Транзакции отсортированы по сумме в порядке убывания.")
+
+        top_5_transactions = sorted_df.head(5)
+        result = top_5_transactions[["date_operation", "transaction_amount", "category", "description"]].to_dict(
+            orient="records"
+        )
+
+        logger.info(f"Выбрано топ-5 транзакций. Количество транзакций: {len(result)}.")
+
+        return result
+
+    except Exception as e:
+        logger.error(f"Ошибка при обработке транзакций: {e}")
+        return []
 
 
 def get_currency_rates(api: str, currencies: dict) -> list[dict]:
@@ -137,11 +180,7 @@ def get_currency_rates(api: str, currencies: dict) -> list[dict]:
     result = []
     try:
         for currency in currencies["user_currencies"]:
-            params = {
-                "get": "rates",
-                "pairs": f"{currency}RUB",
-                "key": API_KEY_CURRENCY
-            }
+            params = {"get": "rates", "pairs": f"{currency}RUB", "key": API_KEY_CURRENCY}
 
             response = requests.get(api, params=params)
 
@@ -165,16 +204,14 @@ def get_currency_rates(api: str, currencies: dict) -> list[dict]:
 
 
 def get_stock_price(api: str, stocks: dict) -> Union[list[dict]]:
+    """Функция, которая получает данные об акциях из указанного API"""
     result = []
     try:
         logger.info("Перебираем акции из заданного списка словарей акций")
         for stock in stocks["user_stocks"]:
             logger.info(f"Делаем запрос на сервис API для получения цен акций для {stock}")
 
-            params = {
-                "symbol": stock,
-                "token": API_KEY_STOCKS
-            }
+            params = {"symbol": stock, "token": API_KEY_STOCKS}
 
             response = requests.get(api, params=params)
 
