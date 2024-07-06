@@ -1,0 +1,10 @@
+[
+    {
+        "date_operation":"2020-01-01",
+        "transaction_amount":150
+    },
+    {
+        "date_operation":"2020-02-01",
+        "transaction_amount":300
+    }
+]
